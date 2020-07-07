@@ -1,5 +1,7 @@
 <h1 align="center">Welcome to rhos 🎉</h1>
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/a6c0a1bd-e05c-4f9d-a422-52688125f7ed/deploy-status)](https://app.netlify.com/sites/rhos/deploys)
+
 > Inspired by [nica-os](https://github.com/NicolaLC/nica-os)
 
 The purpose of this application is to recreate an OS in the browser, as a portfolio.
