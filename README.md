@@ -13,7 +13,7 @@ Install dependencies
 $ yarn install
 ```
 
-Serve with hot reload at [localhost:3000](localhost:3000)
+Serve with hot reload at [localhost:3000](http://localhost:3000)
 ```bash
 $ yarn dev
 ```
@@ -35,7 +35,7 @@ $ yarn start
 
 Generate static project
 ```
-$ yarn generate
+$ yarn export
 ```
 
 ## Author
