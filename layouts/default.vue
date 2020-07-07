@@ -1,8 +1,19 @@
 <template>
-  <div>
+  <div class="rhos-content">
     <Nuxt />
+    <ActivityBar />
   </div>
 </template>
+
+<script>
+import ActivityBar from './activity';
+
+export default {
+  components: {
+    ActivityBar
+  }
+}
+</script>
 
 <style>
 html {
@@ -31,32 +42,24 @@ html {
   margin: 0;
 }
 
-.button--green {
-  display: inline-block;
-  border-radius: 4px;
-  border: 1px solid #3b8070;
-  color: #3b8070;
-  text-decoration: none;
-  padding: 10px 30px;
+body {
+  background-color: #2c3e50;
+  height: 100vh;
+  max-height: 100vh;
+  width: 100vw;
+  max-width: 100vw;
+  overflow: hidden;
 }
 
-.button--green:hover {
-  color: #fff;
-  background-color: #3b8070;
+#__nuxt,
+#__layout {
+  height: 100%;
 }
 
-.button--grey {
-  display: inline-block;
-  border-radius: 4px;
-  border: 1px solid #35495e;
-  color: #35495e;
-  text-decoration: none;
-  padding: 10px 30px;
-  margin-left: 15px;
-}
-
-.button--grey:hover {
-  color: #fff;
-  background-color: #35495e;
+.rhos-content {
+  height: 100%;
+  display: grid;
+  grid-template-areas: "desktop" "activitybar";
+  grid-template-rows: calc(100% - 3rem) 3rem;
 }
 </style>
