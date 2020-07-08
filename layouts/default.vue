@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import ActivityBar from './activity';
+import ActivityBar from './activity'
 
 export default {
   components: {

@@ -1,20 +1,34 @@
 <template>
-  <nav :class="[$style.sidebar]">
-    <ul :class="[$style.sidebar__list]">
-      <li :class="[$style.sidebar__item]">
+  <nav :class="$style.sidebar">
+    <ul :class="$style.sidebar__list">
+      <li :class="$style.sidebar__item" @click="openMenu">
         <svg fill="currentColor" viewBox="0 0 20 20">
-          <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"></path>
+          <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z" />
         </svg>
         Home
       </li>
-      <li :class="[$style.sidebar__item, $style.sidebar__apps]">
-        <ul :class="[$style.sidebar__sublist]">
-          <li>
-            Current apps
+      <div v-show="menuOpen" :class="$style.sidebar__menu">
+        <ul>
+          <li>App 1</li>
+          <li>App 2</li>
+          <li>App 3</li>
+          <li>App 4</li>
+        </ul>
+      </div>
+      <li :class="$style.sidebar__apps">
+        <ul :class="$style.sidebar__sublist">
+          <li :class="$style.sidebar__sublist__item">
+            App 1
+          </li>
+          <li :class="$style.sidebar__sublist__item">
+            App 2
+          </li>
+          <li :class="$style.sidebar__sublist__item">
+            App 3
           </li>
         </ul>
       </li>
-      <li :class="[$style.sidebar__item]">
+      <li :class="$style.sidebar__item">
         {{ date }}
       </li>
     </ul>
@@ -24,31 +38,57 @@
 <script>
 export default {
   name: 'ActivityBar',
-  data() {
+  data () {
     return {
+      menuOpen: false,
       date: new Date().toLocaleString('en-US', {
         day: 'numeric',
-        month: 'long',
-        year: 'numeric'
+        month: 'short',
+        hour: 'numeric',
+        minute: 'numeric'
+      }),
+      option: {}
+    }
+  },
+  mounted () {
+    this.option.interval = setInterval(this.updateDate, 1000)
+  },
+  beforeDestroy () {
+    clearInterval(this.option.interval)
+  },
+  methods: {
+    updateDate () {
+      this.date = new Date().toLocaleString('en-US', {
+        day: 'numeric',
+        month: 'short',
+        hour: 'numeric',
+        minute: 'numeric'
       })
+    },
+    openMenu () {
+      this.menuOpen = !this.menuOpen
     }
   }
 }
 </script>
 
 <style lang="scss" module>
+$background: #34495e;
+
 .sidebar {
   width: 100%;
   height: 100%;
   border-top: 2px solid #fff;
-  background-color: #34495e;
+  background-color: $background;
+  position: relative;
 
   .sidebar__list {
     list-style-type: none;
     padding: 0;
     height: 100%;
-    display: flex;
-    align-items: center;
+    display: grid;
+    grid-template-columns: 6rem 1fr 9rem;
+    grid-template-areas: "menu windows date";
 
     .sidebar__item {
       padding: .5rem 1rem;
@@ -56,26 +96,68 @@ export default {
       cursor: pointer;
       display: flex;
       align-items: center;
-
-      &:last-child {
-        flex: 1 1 auto;
-      }
+      justify-content: center;
 
       svg {
         width: 1rem;
         margin-right: .2rem;
       }
-    }
 
-    .sidebar__apps {
-      flex: 1 1 88%;
+      &:first-child {
+        background-color: #fff;
+        color: #000;
+      }
+
+      &:last-child {
+        cursor: auto;
+      }
     }
   }
 
+  .sidebar__apps {
+    overflow-x: auto;
+  }
+
   .sidebar__sublist {
+    display: flex;
+    align-items: center;
     list-style-type: none;
     padding: 0;
     width: 100%;
+    height: 100%;
+
+    &__item {
+      padding: .5rem 1rem;
+      color: #fff;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+  }
+
+  .sidebar__menu {
+    position: absolute;
+    bottom: 2.9rem;
+    left: 0;
+    background-color: $background;
+    border: 2px solid #fff;
+    min-width: 15vw;
+    min-height: 40vh;
+
+    ul {
+      list-style-type: none;
+      padding: 0;
+
+      li {
+        color: #fff;
+        padding: .5rem 1rem;
+        cursor: pointer;
+        transition: background-color ease-in-out .2s;
+
+        &:hover {
+          background-color: lighten($background, 5%);
+        }
+      }
+    }
   }
 }
 </style>
