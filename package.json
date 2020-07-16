@@ -2,6 +2,7 @@
   "name": "rhos",
   "version": "1.0.0",
   "private": true,
+  "description": "The purpose of this application is to recreate an OS in the browser, as a portfolio.",
   "scripts": {
     "dev": "nuxt",
     "build": "nuxt-ts build",
