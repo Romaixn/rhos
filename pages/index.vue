@@ -1,11 +1,16 @@
 <template>
   <div class="container">
-    <div />
+    <window />
   </div>
 </template>
 
-<script lang="ts">
-import Vue from 'vue'
+<script>
+import Window from '../components/window';
 
-export default Vue.extend({})
+export default {
+  name: 'Index',
+  components: {
+    Window
+  }
+}
 </script>
