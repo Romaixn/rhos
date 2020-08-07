@@ -58,7 +58,6 @@ export default {
   },
   beforeDestroy () {
     clearInterval(this.option.interval)
-    clearInterval(this.option.appear)
   },
   methods: {
     updateDate () {

@@ -1,6 +1,7 @@
 <template>
   <div>
     <h1>{{ app.name }}</h1>
+    <app />
   </div>
 </template>
 
