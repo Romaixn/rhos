@@ -1,16 +1,12 @@
 <template>
   <div class="container">
-    <window />
+    <h1>Desktop</h1>
   </div>
 </template>
 
 <script>
-import Window from '../components/window';
 
 export default {
-  name: 'Index',
-  components: {
-    Window
-  }
+  name: 'Index'
 }
 </script>

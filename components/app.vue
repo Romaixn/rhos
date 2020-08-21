@@ -1,16 +1,16 @@
 <template>
   <div>
-    <h1>{{ name }}</h1>
-    <p>Content</p>
+    <h1>{{ app }}</h1>
   </div>
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'nuxt-property-decorator'
+import { Application } from '@/core/applications'
+import { Component, Vue, Prop } from 'nuxt-property-decorator'
 
 @Component
 export default class App extends Vue {
-  name: string = 'App'
+  @Prop({ type: Object, required: true }) readonly app!: Application
 }
 </script>
 

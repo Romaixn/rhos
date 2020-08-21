@@ -1,1 +1,2 @@
-export * from '@/core/applications'
+export * from './application'
+export * from './properties'

@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import ActivityBar from '~/layouts/activity'
+import ActivityBar from '@/layouts/activity'
 
 export default {
   components: {

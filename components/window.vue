@@ -1,17 +1,16 @@
 <template>
   <div>
-    <h1>{{ app.name }}</h1>
-    <app />
+    <app :app="app" />
   </div>
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'nuxt-property-decorator'
-import App from '~/components/app.vue'
+import { Component, Vue, Prop } from 'nuxt-property-decorator'
+import { Application } from '@/core'
 
 @Component
 export default class Window extends Vue {
-  app: App = new App()
+  @Prop({ type: Object, required: true }) readonly app!: Application
 }
 </script>
 

@@ -50,7 +50,7 @@ export default {
         hour: 'numeric',
         minute: 'numeric'
       }),
-      option: {}
+      option: {},
     }
   },
   mounted () {
