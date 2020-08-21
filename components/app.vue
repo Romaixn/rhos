@@ -5,8 +5,8 @@
 </template>
 
 <script lang="ts">
-import { Application } from '@/core/applications'
 import { Component, Vue, Prop } from 'nuxt-property-decorator'
+import { Application } from '@/core/applications'
 
 @Component
 export default class App extends Vue {

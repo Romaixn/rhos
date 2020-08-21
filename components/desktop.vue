@@ -1,17 +1,12 @@
 <template>
   <div>
-    <h1>Coucou</h1>
-    {{ apps }}
+    <h1>Desktop</h1>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'Desktop',
-  async asyncData ({ $content }) {
-    const { apps } = await $content.fetch()
-    return { apps }
-  }
+  name: 'Desktop'
 }
 </script>
 

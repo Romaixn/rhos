@@ -5,10 +5,12 @@ export class Application {
   readonly id: string
   properties?: Properties
   name: string
+  open: boolean
 
-  constructor (name: string = 'App', properties?: Properties) {
+  constructor (name: string = 'App', open: boolean = false, properties?: Properties) {
     this.id = uuid()
     this.name = name
+    this.open = open
     this.properties = {
       fullScreen: false,
       draggable: true,
@@ -16,5 +18,13 @@ export class Application {
       minified: false,
       ...properties
     }
+  }
+
+  get isOpen (): boolean {
+    return this.open
+  }
+
+  set isOpen (open: boolean) {
+    this.open = open
   }
 }
