@@ -1,9 +1,10 @@
 export * from './state'
 
 export interface Application {
-  id: number
+  id: string
   name: string
-  properties: Properties
+  properties?: Properties
+  open: boolean
 }
 
 export enum APPLICATION_CATEGORY {

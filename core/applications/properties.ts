@@ -1,11 +1,6 @@
-export enum APPLICATION_CATEGORY {
-  GAME = 'GAME',
-  UTILITY = 'UTILITY',
-  INFO = 'INFO',
-  OTHERS = 'OTHERS'
-}
+import { APPLICATION_CATEGORY, Properties as IProperties } from '@/core/types'
 
-export class Properties {
+export class Properties implements IProperties {
   alt?: string
   title?: string
   component?: any

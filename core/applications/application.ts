@@ -1,7 +1,8 @@
 import { v4 as uuid } from 'uuid'
 import { Properties } from '@/core/applications/properties'
+import { Application as IApplication } from '@/core/types'
 
-export class Application {
+export class Application implements IApplication {
   readonly id: string
   properties?: Properties
   name: string
