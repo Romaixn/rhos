@@ -1,11 +1,10 @@
 <template>
-  <div class="container">
-    <div />
-  </div>
+  <desktop />
 </template>
 
-<script lang="ts">
-import Vue from 'vue'
+<script>
 
-export default Vue.extend({})
+export default {
+  name: 'Index'
+}
 </script>

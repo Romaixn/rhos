@@ -11,22 +11,17 @@
       </li>
       <div v-show="menuOpen" :class="$style.sidebar__menu">
         <ul>
-          <li>App 1</li>
-          <li>App 2</li>
-          <li>App 3</li>
-          <li>App 4</li>
+          <li v-for="app in apps" :key="app.id" @click="openApp(app)">
+            {{ app.name }}
+            open : {{ app.isOpen }}
+          </li>
         </ul>
       </div>
       <li :class="$style.sidebar__apps">
         <ul :class="$style.sidebar__sublist">
-          <li :class="$style.sidebar__sublist__item">
-            App 1
-          </li>
-          <li :class="$style.sidebar__sublist__item">
-            App 2
-          </li>
-          <li :class="$style.sidebar__sublist__item">
-            App 3
+          <li v-for="app in openApps" :key="app.id" :class="$style.sidebar__sublist__item" @click="minified(app)">
+            {{ app.name }}
+            minified : {{ app.properties.minified }}
           </li>
         </ul>
       </li>
@@ -38,40 +33,60 @@
   </nav>
 </template>
 
-<script>
-export default {
-  name: 'ActivityBar',
-  data () {
-    return {
-      menuOpen: false,
-      date: new Date().toLocaleString('en-US', {
-        day: 'numeric',
-        month: 'short',
-        hour: 'numeric',
-        minute: 'numeric'
-      }),
-      option: {}
-    }
-  },
+<script lang="ts">
+import { Vue, Component } from 'vue-property-decorator'
+import { Application } from '~/core'
+
+@Component
+export default class ActivityBar extends Vue {
+  menuOpen: boolean = false
+  date: string = new Date().toLocaleString('en-US', {
+    day: 'numeric',
+    month: 'short',
+    hour: 'numeric',
+    minute: 'numeric'
+  })
+
+  apps: Application[] = [
+    new Application('Terminal'),
+    new Application('Files')
+  ]
+
   mounted () {
-    this.option.interval = setInterval(this.updateDate, 1000)
-  },
-  beforeDestroy () {
-    clearInterval(this.option.interval)
-    clearInterval(this.option.appear)
-  },
-  methods: {
-    updateDate () {
-      this.date = new Date().toLocaleString('en-US', {
-        day: 'numeric',
-        month: 'short',
-        hour: 'numeric',
-        minute: 'numeric'
-      })
-    },
-    openMenu () {
-      this.menuOpen = !this.menuOpen
-    }
+    setInterval(this.updateDate, 1000)
+  }
+
+  get openApps () {
+    const openApps: Application[] = []
+
+    this.apps.forEach((app) => {
+      if (app.open) {
+        openApps.push(app)
+      }
+    })
+
+    return openApps
+  }
+
+  updateDate () {
+    this.date = new Date().toLocaleString('en-US', {
+      day: 'numeric',
+      month: 'short',
+      hour: 'numeric',
+      minute: 'numeric'
+    })
+  }
+
+  openMenu () {
+    this.menuOpen = !this.menuOpen
+  }
+
+  openApp (app: Application) {
+    app.isOpen = true
+  }
+
+  minified (app: Application) {
+    app.properties!.minified = !app.properties!.minified
   }
 }
 </script>
@@ -146,6 +161,8 @@ $background: #34495e;
     border: 2px solid #fff;
     min-width: 15vw;
     min-height: 40vh;
+    max-height: 60vh;
+    overflow-y: scroll;
 
     ul {
       list-style-type: none;
