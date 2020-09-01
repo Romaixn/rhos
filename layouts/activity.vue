@@ -13,14 +13,15 @@
         <ul>
           <li v-for="app in apps" :key="app.id" @click="openApp(app)">
             {{ app.name }}
-            {{ app.isOpen }}
+            open : {{ app.isOpen }}
           </li>
         </ul>
       </div>
       <li :class="$style.sidebar__apps">
         <ul :class="$style.sidebar__sublist">
-          <li v-for="app in openApps" :key="app.id" :class="$style.sidebar__sublist__item">
+          <li v-for="app in openApps" :key="app.id" :class="$style.sidebar__sublist__item" @click="minified(app)">
             {{ app.name }}
+            minified : {{ app.properties.minified }}
           </li>
         </ul>
       </li>
@@ -82,6 +83,10 @@ export default class ActivityBar extends Vue {
 
   openApp (app: Application) {
     app.isOpen = true
+  }
+
+  minified (app: Application) {
+    app.properties!.minified = !app.properties!.minified
   }
 }
 </script>

@@ -1,6 +1,6 @@
 import type { MutationTree, ActionTree, ActionContext } from 'vuex'
 import type { NuxtContentInstance as AppContent } from '@nuxt/content'
-import type { RootState, Application } from '~/core/types'
+import type { RootState, Application } from '@/core/types'
 
 export const state = (): RootState => ({
   apps: []

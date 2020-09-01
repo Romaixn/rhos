@@ -26,7 +26,7 @@ export interface Properties {
   startPosition?: {x: string, y: string}
   size?: {width: string, height: string}
   data?: {[key: string]: any}
-  fs?: {
+  pwd?: {
     path: string,
     category: APPLICATION_CATEGORY
   }
